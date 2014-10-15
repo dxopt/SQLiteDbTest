@@ -9,12 +9,28 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <CheckBox
-        android:id="@+id/option_close_db"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/option_close_db"
-        android:checked="true" />
+    <RadioGroup
+        android:id="@+id/mode_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/mode_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/option_mode_recommend"
+            android:checked="true" />
+        <RadioButton
+            android:id="@+id/mode_single_openhelper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/option_mode_single_openhelper" />
+
+        <RadioButton
+            android:id="@+id/mode_multiple_openhelper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/option_mode_multiple_openhelper" />
+    </RadioGroup>
 
     <Button
         android:id="@+id/single_thread"

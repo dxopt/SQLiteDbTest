@@ -4,7 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class TestOption implements Parcelable {
-    public boolean needCloseDb = true;
+    public static final int MODE_RECOMMEND = 1;
+    public static final int MODE_SINGLE_OPEN_HELPER = 2;
+    public static final int MODE_MULTIPLE_OPEN_HELPER = 3;
+
+    public int mode;
     public int threadCount = 1;
 
     public TestOption() {
@@ -18,12 +22,12 @@ public class TestOption implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(needCloseDb ? 1 : 0);
+        dest.writeInt(mode);
         dest.writeInt(threadCount);
     }
 
     public TestOption(Parcel in) {
-        needCloseDb = in.readInt() == 1;
+        mode = in.readInt();
         threadCount = in.readInt();
     }
 

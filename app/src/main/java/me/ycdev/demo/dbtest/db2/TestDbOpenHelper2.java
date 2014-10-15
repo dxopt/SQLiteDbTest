@@ -1,20 +1,20 @@
-package me.ycdev.demo.dbtest.db;
+package me.ycdev.demo.dbtest.db2;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class TestDbOpenHelper extends SQLiteOpenHelper {
-    private static final String DB_NAME = "test.db";
+public class TestDbOpenHelper2 extends SQLiteOpenHelper {
+    private static final String DB_NAME = "test2.db";
     private static final int DB_VERSION = 1;
 
-    public TestDbOpenHelper(Context context) {
+    public TestDbOpenHelper2(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        TestTable.createTableIfNeeded(db);
+        TestTable2.createTableIfNeeded(db);
     }
 
     @Override
@@ -23,8 +23,8 @@ public class TestDbOpenHelper extends SQLiteOpenHelper {
     }
 
     public static void clearDbRecords(Context cxt) {
-        SQLiteDatabase db = new TestDbOpenHelper(cxt).getWritableDatabase();
-        TestTable table = new TestTable(db);
+        SQLiteDatabase db = new TestDbOpenHelper2(cxt).getWritableDatabase();
+        TestTable2 table = new TestTable2(db);
         table.clearRecords();
         db.close();
     }

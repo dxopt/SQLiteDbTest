@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import me.ycdev.demo.dbtest.db.TestDbOpenHelper;
@@ -21,7 +23,7 @@ import me.ycdev.demo.dbtest.utils.AppLogger;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
 
-    private CheckBox mCloseDbCheckBox;
+    private RadioGroup mModeChoice;
     private Button mSingleThreadBtn;
     private Button mMultipleThreadBtn;
     private Button mMultipleProcessBtn;
@@ -36,7 +38,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     private void initViews() {
-        mCloseDbCheckBox = (CheckBox) findViewById(R.id.option_close_db);
+        mModeChoice = (RadioGroup) findViewById(R.id.mode_choice);
         mSingleThreadBtn =(Button) findViewById(R.id.single_thread);
         mSingleThreadBtn.setOnClickListener(this);
         mMultipleThreadBtn = (Button) findViewById(R.id.multiple_thread);
@@ -70,7 +72,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     private void refreshTestButtons(boolean testRunning, Button curTestBtn, int textResId) {
-        mCloseDbCheckBox.setEnabled(!testRunning);
+        mModeChoice.setEnabled(!testRunning);
         mSingleThreadBtn.setEnabled(!testRunning);
         mMultipleThreadBtn.setEnabled(!testRunning);
         mMultipleProcessBtn.setEnabled(!testRunning);
@@ -93,6 +95,20 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
+    private TestOption getCurTestOption() {
+        TestOption option = new TestOption();
+        int curChoiceId = mModeChoice.getCheckedRadioButtonId();
+        if (curChoiceId == R.id.mode_recommend) {
+            option.mode = TestOption.MODE_RECOMMEND;
+        } else if (curChoiceId == R.id.mode_single_openhelper) {
+            option.mode = TestOption.MODE_SINGLE_OPEN_HELPER;
+        } else if (curChoiceId == R.id.mode_multiple_openhelper) {
+            option.mode = TestOption.MODE_MULTIPLE_OPEN_HELPER;
+        }
+        option.threadCount = 16;
+        return option;
+    }
+
     private void doSingThreadTest() {
         /**
          * Test result summary:
@@ -105,9 +121,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
          */
         // the test result should be OK
         if (mCurTester == null) {
-            TestOption option = new TestOption();
-            option.needCloseDb = mCloseDbCheckBox.isChecked();
-            mCurTester = new SingleThreadTester(this, option);
+            mCurTester = new SingleThreadTester(this, getCurTestOption());
             mCurTester.startTest();
         } else {
             mCurTester.stopTest();
@@ -128,10 +142,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
          *   + Nexus 4 & 4.4.2
          */
         if (mCurTester == null) {
-            TestOption option = new TestOption();
-            option.needCloseDb = mCloseDbCheckBox.isChecked();
-            option.threadCount = 8;
-            mCurTester = new MultiThreadTester(this, option);
+            mCurTester = new MultiThreadTester(this, getCurTestOption());
             mCurTester.startTest();
         } else {
             mCurTester.stopTest();
@@ -151,9 +162,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
          *   + Nexus 4 & 4.4.2: TestFailure#5
          */
         if (mCurTester == null) {
-            TestOption option = new TestOption();
-            option.needCloseDb = mCloseDbCheckBox.isChecked();
-            option.threadCount = 8;
+            TestOption option = getCurTestOption();
             mCurTester = new MultiThreadTester(this, option);
             mCurTester.startTest();
             TestService.startTest(this, option);
@@ -283,5 +292,31 @@ android.database.sqlite.SQLiteDatabaseLockedException: database is locked (code 
 	at android.database.sqlite.SQLiteDatabase.insertOrThrow(SQLiteDatabase.java:1365)
 	at me.ycdev.demo.dbtest.db.TestTable.addNewRecord(TestTable.java:71)
 	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:58)
+	at java.lang.Thread.run(Thread.java:841)
+*/
+
+/* TestFailure#6: Single SQLiteOpenHelper instance and close DB instances
+2014-10-15 16:50:07
+PID: 25006
+TID: 5024
+OS Version: 4.3_18
+Vendor: samsung
+Model: Galaxy Nexus
+CPU ABI: armeabi-v7a
+CPU API2: armeabi
+
+java.lang.IllegalStateException: Cannot perform this operation because the connection pool has been closed.
+	at android.database.sqlite.SQLiteConnectionPool.throwIfClosedLocked(SQLiteConnectionPool.java:962)
+	at android.database.sqlite.SQLiteConnectionPool.waitForConnection(SQLiteConnectionPool.java:599)
+	at android.database.sqlite.SQLiteConnectionPool.acquireConnection(SQLiteConnectionPool.java:348)
+	at android.database.sqlite.SQLiteSession.acquireConnection(SQLiteSession.java:894)
+	at android.database.sqlite.SQLiteSession.executeForCursorWindow(SQLiteSession.java:834)
+	at android.database.sqlite.SQLiteQuery.fillWindow(SQLiteQuery.java:62)
+	at android.database.sqlite.SQLiteCursor.fillWindow(SQLiteCursor.java:144)
+	at android.database.sqlite.SQLiteCursor.getCount(SQLiteCursor.java:133)
+	at android.database.AbstractCursor.moveToPosition(AbstractCursor.java:197)
+	at android.database.AbstractCursor.moveToFirst(AbstractCursor.java:237)
+	at me.ycdev.demo.dbtest.db.TestTable.query(TestTable.java:48)
+	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:72)
 	at java.lang.Thread.run(Thread.java:841)
 */
