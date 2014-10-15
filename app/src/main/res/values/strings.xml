@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DbTest</string>
+    <string name="action_clear_db">Clear DB</string>
+    <string name="toast_db_cleared">DB cleared!</string>
+
+    <string name="option_close_db">Close Db when operation finished.</string>
+    <string name="btn_stop_test">Stop test</string>
+    <string name="btn_single_thread">Single thread</string>
+    <string name="btn_multiple_thread">Multiple thread</string>
+    <string name="btn_multiple_process">Multiple process</string>
+
+</resources>
