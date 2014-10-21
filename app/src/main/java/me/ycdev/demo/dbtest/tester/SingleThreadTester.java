@@ -9,11 +9,13 @@ import android.os.Process;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import me.ycdev.demo.dbtest.db.TestDbCreator;
 import me.ycdev.demo.dbtest.db.TestDbOpenHelper;
 import me.ycdev.demo.dbtest.db.TestTable;
+import me.ycdev.demo.dbtest.db2.TestDbCreator2;
 import me.ycdev.demo.dbtest.db2.TestDbOpenHelper2;
 import me.ycdev.demo.dbtest.db2.TestTable2;
-import me.ycdev.demo.dbtest.dbmgr.DbOpenHelperMgr;
+import me.ycdev.demo.dbtest.dbmgr.SQLiteDbMgr;
 import me.ycdev.demo.dbtest.utils.AppLogger;
 
 public class SingleThreadTester extends BaseTester implements Runnable {
@@ -44,9 +46,9 @@ public class SingleThreadTester extends BaseTester implements Runnable {
     private SQLiteDatabase getDatabase() {
         if (mTestOption.mode == TestOption.MODE_RECOMMEND) {
             if (mIndex % 2 == 1) {
-                return DbOpenHelperMgr.getInstance(mAppContext).acquireDatabase(TestDbOpenHelper.class);
+                return SQLiteDbMgr.acquireDatabase(mAppContext, TestDbCreator.class);
             } else {
-                return DbOpenHelperMgr.getInstance(mAppContext).acquireDatabase(TestDbOpenHelper2.class);
+                return SQLiteDbMgr.acquireDatabase(mAppContext, TestDbCreator2.class);
             }
         } else if (mTestOption.mode == TestOption.MODE_SINGLE_OPEN_HELPER) {
             if (sDbOpenHelper == null) {
@@ -74,9 +76,9 @@ public class SingleThreadTester extends BaseTester implements Runnable {
     private void releaseDatabase(SQLiteDatabase db) {
         if (mTestOption.mode == TestOption.MODE_RECOMMEND) {
             if (mIndex % 2 == 1) {
-                DbOpenHelperMgr.getInstance(mAppContext).releaseDatabase(TestDbOpenHelper.class);
+                SQLiteDbMgr.releaseDatabase(mAppContext, TestDbCreator.class);
             } else {
-                DbOpenHelperMgr.getInstance(mAppContext).releaseDatabase(TestDbOpenHelper2.class);
+                SQLiteDbMgr.releaseDatabase(mAppContext, TestDbCreator2.class);
             }
         } else if (mTestOption.mode == TestOption.MODE_SINGLE_OPEN_HELPER) {
             // don't close DB and helper
