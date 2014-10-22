@@ -23,6 +23,7 @@ public class SingleThreadTester extends BaseTester implements Runnable {
 
     private static AtomicInteger sIndexMgr = new AtomicInteger(0);
     private static volatile SQLiteOpenHelper sDbOpenHelper;
+    private static volatile SQLiteOpenHelper sDbOpenHelper2;
 
     private int mIndex;
     private Thread mThread;
@@ -51,18 +52,21 @@ public class SingleThreadTester extends BaseTester implements Runnable {
                 return SQLiteDbMgr.acquireDatabase(mAppContext, TestDbCreator2.class);
             }
         } else if (mTestOption.mode == TestOption.MODE_SINGLE_OPEN_HELPER) {
-            if (sDbOpenHelper == null) {
+            if (sDbOpenHelper == null || sDbOpenHelper2 == null) {
                 synchronized (SingleThreadTester.class) {
                     if (sDbOpenHelper == null) {
-                        if (mIndex % 2 == 1) {
-                            sDbOpenHelper = new TestDbOpenHelper(mAppContext);
-                        } else {
-                            sDbOpenHelper = new TestDbOpenHelper2(mAppContext);
-                        }
+                        sDbOpenHelper = new TestDbOpenHelper(mAppContext);
+                    }
+                    if (sDbOpenHelper2 == null) {
+                        sDbOpenHelper2 = new TestDbOpenHelper2(mAppContext);
                     }
                 }
             }
-            sDbOpenHelper.getWritableDatabase();
+            if (mIndex % 2 == 1) {
+                return sDbOpenHelper.getWritableDatabase();
+            } else {
+                return sDbOpenHelper2.getWritableDatabase();
+            }
         } else if (mTestOption.mode == TestOption.MODE_MULTIPLE_OPEN_HELPER) {
             if (mIndex % 2 == 1) {
                 return new TestDbOpenHelper(mAppContext).getWritableDatabase();
