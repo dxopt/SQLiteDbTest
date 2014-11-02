@@ -9,7 +9,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
 
-import me.ycdev.androidlib.utils.DateTimeUtils;
+import me.ycdev.android.lib.common.utils.DateTimeUtils;
+import me.ycdev.android.lib.common.utils.StringUtils;
 
 public class CrashHandler implements UncaughtExceptionHandler {
     private static final String TAG = "CrashHandler";
@@ -68,7 +69,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
     }
 
     private void printEnvironmentInfo(PrintWriter pw, long curTime) {
-        pw.println(DateTimeUtils.formatTimeForDisplay(curTime));
+        pw.println(StringUtils.formatDateTime(curTime));
         pw.println("PID: " + android.os.Process.myPid());
         pw.println("TID: " + Thread.currentThread().getId());
 

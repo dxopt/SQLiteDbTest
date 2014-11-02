@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.HashMap;
 
-import me.ycdev.androidlib.LibConfigs;
-import me.ycdev.androidlib.utils.LibLogger;
+import me.ycdev.android.lib.common.LibConfigs;
+import me.ycdev.android.lib.common.utils.LibLogger;
 
 public class SQLiteDbMgr {
     private static final String TAG = "SQLiteDbMgr";

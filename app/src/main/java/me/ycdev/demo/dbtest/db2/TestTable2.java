@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
 
 import java.util.Random;
 
-import me.ycdev.androidlib.utils.DateTimeUtils;
+import me.ycdev.android.lib.common.utils.StringUtils;
 
 public class TestTable2 {
     public static class DbRecord {
@@ -60,7 +60,7 @@ public class TestTable2 {
      * @return the row ID of the newly inserted row, or -1 if an error occurred
      */
     public long addNewRecord() {
-        String curTime = DateTimeUtils.formatTimeForDisplay(System.currentTimeMillis());
+        String curTime = StringUtils.formatDateTime(System.currentTimeMillis());
         ContentValues values = new ContentValues();
         values.put(FIELD_CREATE_TIME, curTime);
         values.put(FIELD_UPDATE_TIME, curTime);
@@ -87,7 +87,7 @@ public class TestTable2 {
         }
 
         String where = BaseColumns._ID + "=" + id;
-        String curTime = DateTimeUtils.formatTimeForDisplay(System.currentTimeMillis());
+        String curTime = StringUtils.formatDateTime(System.currentTimeMillis());
         ContentValues values = new ContentValues();
         values.put(FIELD_UPDATE_TIME, curTime);
         values.put(FIELD_VALUE, record.value + 1);
