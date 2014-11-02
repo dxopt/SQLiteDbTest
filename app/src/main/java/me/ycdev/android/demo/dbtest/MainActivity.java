@@ -1,4 +1,4 @@
-package me.ycdev.demo.dbtest;
+package me.ycdev.android.demo.dbtest;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -6,18 +6,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import me.ycdev.demo.dbtest.db.TestDbOpenHelper;
-import me.ycdev.demo.dbtest.tester.BaseTester;
-import me.ycdev.demo.dbtest.tester.MultiThreadTester;
-import me.ycdev.demo.dbtest.tester.SingleThreadTester;
-import me.ycdev.demo.dbtest.tester.TestOption;
-import me.ycdev.demo.dbtest.tester.TestService;
-import me.ycdev.demo.dbtest.utils.AppLogger;
+import me.ycdev.android.demo.dbtest.db.TestDbOpenHelper;
+import me.ycdev.android.demo.dbtest.tester.BaseTester;
+import me.ycdev.android.demo.dbtest.tester.MultiThreadTester;
+import me.ycdev.android.demo.dbtest.tester.SingleThreadTester;
+import me.ycdev.android.demo.dbtest.tester.TestOption;
+import me.ycdev.android.demo.dbtest.tester.TestService;
+import me.ycdev.android.demo.dbtest.utils.AppLogger;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -190,8 +188,8 @@ android.database.sqlite.SQLiteException: error code 5: database is locked
 	at android.database.sqlite.SQLiteStatement.execute(SQLiteStatement.java:61)
 	at android.database.sqlite.SQLiteDatabase.updateWithOnConflict(SQLiteDatabase.java:1727)
 	at android.database.sqlite.SQLiteDatabase.update(SQLiteDatabase.java:1656)
-	at me.ycdev.demo.dbtest.db.TestTable.updateRecord(TestTable.java:96)
-	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:64)
+	at me.ycdev.android.demo.dbtest.db.TestTable.updateRecord(TestTable.java:96)
+	at me.ycdev.android.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:64)
 	at java.lang.Thread.run(Thread.java:1019)
 */
 
@@ -215,7 +213,7 @@ android.database.sqlite.SQLiteDatabaseLockedException: database is locked (code 
 	at android.database.sqlite.SQLiteDatabase.getVersion(SQLiteDatabase.java:862)
 	at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java:242)
 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:164)
-	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:47)
+	at me.ycdev.android.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:47)
 	at java.lang.Thread.run(Thread.java:841)
 */
 
@@ -247,7 +245,7 @@ android.database.sqlite.SQLiteDatabaseLockedException: database is locked (code 
 	at android.content.ContextWrapper.openOrCreateDatabase(ContextWrapper.java:235)
 	at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java:224)
 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:164)
-	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:47)
+	at me.ycdev.android.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:47)
 	at java.lang.Thread.run(Thread.java:841)
 */
 
@@ -268,8 +266,8 @@ android.database.sqlite.SQLiteDatabaseLockedException: database is locked (code 
 	at android.database.sqlite.SQLiteStatement.executeInsert(SQLiteStatement.java:86)
 	at android.database.sqlite.SQLiteDatabase.insertWithOnConflict(SQLiteDatabase.java:1469)
 	at android.database.sqlite.SQLiteDatabase.insertOrThrow(SQLiteDatabase.java:1365)
-	at me.ycdev.demo.dbtest.db.TestTable.addNewRecord(TestTable.java:71)
-	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:58)
+	at me.ycdev.android.demo.dbtest.db.TestTable.addNewRecord(TestTable.java:71)
+	at me.ycdev.android.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:58)
 	at java.lang.Thread.run(Thread.java:841)
 */
 
@@ -290,8 +288,8 @@ android.database.sqlite.SQLiteDatabaseLockedException: database is locked (code 
 	at android.database.sqlite.SQLiteStatement.executeInsert(SQLiteStatement.java:86)
 	at android.database.sqlite.SQLiteDatabase.insertWithOnConflict(SQLiteDatabase.java:1469)
 	at android.database.sqlite.SQLiteDatabase.insertOrThrow(SQLiteDatabase.java:1365)
-	at me.ycdev.demo.dbtest.db.TestTable.addNewRecord(TestTable.java:71)
-	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:58)
+	at me.ycdev.android.demo.dbtest.db.TestTable.addNewRecord(TestTable.java:71)
+	at me.ycdev.android.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:58)
 	at java.lang.Thread.run(Thread.java:841)
 */
 
@@ -316,7 +314,7 @@ java.lang.IllegalStateException: Cannot perform this operation because the conne
 	at android.database.sqlite.SQLiteCursor.getCount(SQLiteCursor.java:133)
 	at android.database.AbstractCursor.moveToPosition(AbstractCursor.java:197)
 	at android.database.AbstractCursor.moveToFirst(AbstractCursor.java:237)
-	at me.ycdev.demo.dbtest.db.TestTable.query(TestTable.java:48)
-	at me.ycdev.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:72)
+	at me.ycdev.android.demo.dbtest.db.TestTable.query(TestTable.java:48)
+	at me.ycdev.android.demo.dbtest.tester.SingleThreadTester.run(SingleThreadTester.java:72)
 	at java.lang.Thread.run(Thread.java:841)
 */

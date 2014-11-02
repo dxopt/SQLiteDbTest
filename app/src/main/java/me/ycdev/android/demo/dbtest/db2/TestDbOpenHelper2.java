@@ -1,4 +1,4 @@
-package me.ycdev.demo.dbtest.db2;
+package me.ycdev.android.demo.dbtest.db2;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

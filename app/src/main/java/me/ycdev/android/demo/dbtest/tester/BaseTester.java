@@ -1,8 +1,8 @@
-package me.ycdev.demo.dbtest.tester;
+package me.ycdev.android.demo.dbtest.tester;
 
 import android.content.Context;
 
-import me.ycdev.demo.dbtest.utils.AppLogger;
+import me.ycdev.android.demo.dbtest.utils.AppLogger;
 
 public abstract class BaseTester {
     private final String TAG;

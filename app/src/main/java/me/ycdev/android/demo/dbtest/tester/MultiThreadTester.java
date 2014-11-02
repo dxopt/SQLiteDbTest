@@ -1,4 +1,4 @@
-package me.ycdev.demo.dbtest.tester;
+package me.ycdev.android.demo.dbtest.tester;
 
 import android.content.Context;
 

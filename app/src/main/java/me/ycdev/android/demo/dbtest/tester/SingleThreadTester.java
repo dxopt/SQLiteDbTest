@@ -1,4 +1,4 @@
-package me.ycdev.demo.dbtest.tester;
+package me.ycdev.android.demo.dbtest.tester;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,14 +9,14 @@ import android.os.Process;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import me.ycdev.demo.dbtest.db.TestDbCreator;
-import me.ycdev.demo.dbtest.db.TestDbOpenHelper;
-import me.ycdev.demo.dbtest.db.TestTable;
-import me.ycdev.demo.dbtest.db2.TestDbCreator2;
-import me.ycdev.demo.dbtest.db2.TestDbOpenHelper2;
-import me.ycdev.demo.dbtest.db2.TestTable2;
-import me.ycdev.demo.dbtest.dbmgr.SQLiteDbMgr;
-import me.ycdev.demo.dbtest.utils.AppLogger;
+import me.ycdev.android.demo.dbtest.db.TestDbCreator;
+import me.ycdev.android.demo.dbtest.db.TestDbOpenHelper;
+import me.ycdev.android.demo.dbtest.db.TestTable;
+import me.ycdev.android.demo.dbtest.db2.TestDbCreator2;
+import me.ycdev.android.demo.dbtest.db2.TestDbOpenHelper2;
+import me.ycdev.android.demo.dbtest.db2.TestTable2;
+import me.ycdev.android.lib.common.dbmgr.SQLiteDbMgr;
+import me.ycdev.android.demo.dbtest.utils.AppLogger;
 
 public class SingleThreadTester extends BaseTester implements Runnable {
     private static final String TAG = "SingleThreadTester";

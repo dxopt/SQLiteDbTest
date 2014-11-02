@@ -1,4 +1,4 @@
-package me.ycdev.demo.dbtest.utils;
+package me.ycdev.android.demo.dbtest.utils;
 
 public class Constants {
     public static final String EXTERNAL_STORAGE_PATH_APP_ROOT = "yc/dbtest";

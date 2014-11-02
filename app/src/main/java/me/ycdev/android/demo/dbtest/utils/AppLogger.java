@@ -1,4 +1,4 @@
-package me.ycdev.demo.dbtest.utils;
+package me.ycdev.android.demo.dbtest.utils;
 
 import android.util.Log;
 

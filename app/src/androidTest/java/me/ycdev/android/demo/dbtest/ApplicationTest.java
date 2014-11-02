@@ -1,4 +1,4 @@
-package me.ycdev.demo.dbtest;
+package me.ycdev.android.demo.dbtest;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

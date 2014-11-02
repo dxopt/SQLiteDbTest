@@ -1,9 +1,9 @@
-package me.ycdev.demo.dbtest;
+package me.ycdev.android.demo.dbtest;
 
 import android.app.Application;
 
-import me.ycdev.demo.dbtest.utils.AppLogger;
-import me.ycdev.demo.dbtest.utils.CrashHandler;
+import me.ycdev.android.demo.dbtest.utils.AppLogger;
+import me.ycdev.android.demo.dbtest.utils.CrashHandler;
 
 public class DbTestApplication extends Application {
     private static final String TAG = "DbTestApplication";

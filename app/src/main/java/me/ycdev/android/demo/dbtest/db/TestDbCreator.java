@@ -1,9 +1,9 @@
-package me.ycdev.demo.dbtest.db;
+package me.ycdev.android.demo.dbtest.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import me.ycdev.demo.dbtest.dbmgr.SQLiteDbCreator;
+import me.ycdev.android.lib.common.dbmgr.SQLiteDbCreator;
 
 public class TestDbCreator implements SQLiteDbCreator {
     @Override
